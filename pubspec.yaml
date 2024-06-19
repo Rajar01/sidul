@@ -19,6 +19,8 @@ dependencies:
   equatable: ^2.0.5
   http: ^1.2.1
   carousel_slider: ^4.2.1
+  flutter_svg: ^2.0.10+1
+  flutter_riverpod: ^2.5.1
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +39,6 @@ flutter:
     - assets/img/Cover/cover3.jpg
     - assets/img/Cover/cover4.jpg
     - assets/img/appbarImage.jpeg
+    - assets/img/notification.svg
+    - assets/img/bookmark.svg
+    - assets/img/download.svg
