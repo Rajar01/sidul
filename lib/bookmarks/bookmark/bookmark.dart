@@ -31,6 +31,12 @@ class _BookmarkState extends State<Bookmark> {
     if (index == 0) {
       Navigator.pushReplacementNamed(context, '/');
     }
+    if (index == 1) {
+      Navigator.pushReplacementNamed(context, '/eksplorasi');
+    }
+    if (index == 3) {
+      Navigator.pushReplacementNamed(context, '/download');
+    }
   }
 
   void onTextTap(int index) {
