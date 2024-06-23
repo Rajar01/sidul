@@ -21,6 +21,12 @@ class _downloadState extends State<download> {
     if (index == 0) {
       Navigator.pushReplacementNamed(context, '/');
     }
+    if (index == 1) {
+      Navigator.pushReplacementNamed(context, '/eksplorasi');
+    }
+    if (index == 2) {
+      Navigator.pushReplacementNamed(context, '/bookmark');
+    }
   }
 
   @override
