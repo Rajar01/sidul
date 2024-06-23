@@ -3,6 +3,7 @@ import 'package:sidul/bookmarks/bookmark/bookmark.dart';
 import 'package:sidul/bookmarks/bookmarkEmpty/bookmarkEmpty.dart';
 import 'package:sidul/downloads/download/download.dart';
 import 'package:sidul/downloads/downloadEmpty/downloadEmpty.dart';
+import 'package:sidul/eksplorasi/eksplor.dart';
 import 'package:sidul/home/appBarHome.dart';
 import 'package:sidul/home/bottomNavbar.dart';
 import 'package:sidul/home/carouselText.dart';
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Sidul Home Page',
       routes: {
         '/': (context) => const HomeScreen(),
-        '/eksplorasi': (context) => const HomeScreen(),
+        '/eksplorasi': (context) => const Eksplor(),
         '/bookmark': (context) => const Bookmark(),
         '/download': (context) => const download(),
       },
