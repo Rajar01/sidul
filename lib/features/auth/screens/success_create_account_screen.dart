@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sidul/features/module/screens/home_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 
 class SuccessCreateAccountScreen extends StatelessWidget {
@@ -43,7 +44,16 @@ class SuccessCreateAccountScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 32),
-              HAButton(text: "Lanjutkan", onPressed: () {})
+              HAButton(
+                  text: "Lanjutkan",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  })
             ],
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sidul/features/auth/providers/login_notifier_provider.dart';
 import 'package:sidul/features/auth/screens/register_screen.dart';
+import 'package:sidul/features/module/screens/home_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 import 'package:sidul/shared/widgets/input_field_widget.dart';
 import 'package:sidul/shared/widgets/password_field_widget.dart';
@@ -74,9 +75,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 16),
                   HAButton(
                     text: "Masuk",
-                    onPressed: ref
-                        .read(loginNotifierProvider.notifier)
-                        .onLoginButtonClicked,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 8),
                   Row(

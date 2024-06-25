@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sidul/features/module/screens/module_screen.dart';
 import 'package:sidul/shared/widgets/app_bar_widget.dart';
 import 'package:sidul/shared/widgets/bottom_bar_widget.dart';
 
@@ -112,40 +113,50 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   itemBuilder: (context, index) {
                     return GridTile(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // color: Colors.grey,
-                            height: 192,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              border: Border.all(width: 1),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(4),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ModuleScreen(),
+                            ),
+                          );
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // color: Colors.grey,
+                              height: 192,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(4),
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "Valorant Guide To Radiant",
-                            style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
-                              fontSize: 14,
+                            const SizedBox(height: 8),
+                            const Text(
+                              "Valorant Guide To Radiant",
+                              style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w800,
+                                fontSize: 14,
+                              ),
+                              maxLines: 1,
                             ),
-                            maxLines: 1,
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            "Dzauqi Legend",
-                            style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
+                            const SizedBox(height: 8),
+                            const Text(
+                              "Dzauqi Legend",
+                              style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },

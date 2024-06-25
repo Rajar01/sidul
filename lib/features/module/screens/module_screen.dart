@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sidul/features/module/screens/module_chat_with_ai_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 
 class ModuleScreen extends StatefulWidget {
@@ -29,7 +30,14 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 SizedBox(
                   height: 48,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ModuleChatWithAIScreen(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(

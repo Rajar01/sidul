@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sidul/features/auth/screens/register_screen.dart';
+import 'package:sidul/features/module/screens/module_chat_with_ai_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
