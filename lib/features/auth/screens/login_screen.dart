@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sidul/features/auth/providers/login_notifier_provider.dart';
+import 'package:sidul/features/auth/screens/register_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 import 'package:sidul/shared/widgets/input_field_widget.dart';
 import 'package:sidul/shared/widgets/password_field_widget.dart';
@@ -91,7 +92,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           "Daftar",
                           style: TextStyle(

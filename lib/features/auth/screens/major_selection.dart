@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sidul/features/auth/providers/register_notifier_provider.dart';
+import 'package:sidul/features/auth/screens/completed_profile_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 
 class MajorSelectionScreen extends ConsumerStatefulWidget {
@@ -113,12 +114,21 @@ class _MajorSelectionState extends ConsumerState<MajorSelectionScreen> {
                 children: [
                   HAButton(
                     text: "Lanjutkan",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CompletedProfileScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 8),
                   HAButton(
                     text: "Kembali",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     backgroundColor: Colors.transparent,
                     foregroundColor: const Color.fromARGB(255, 0, 111, 253),
                   ),
