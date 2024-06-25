@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sidul/features/auth/models/register_model.dart';
 import 'package:sidul/shared/enums/role.dart';
+import 'package:http/http.dart';
 
 part 'register_notifier_provider.g.dart';
 
@@ -84,9 +85,9 @@ class RegisterNotifier extends _$RegisterNotifier {
     state = state.copyWith(country: country);
   }
 
-  void onRegisterButtonClicked() {
+  void onRegisterButtonClicked() async {
     // TODO implement API call logic for user register with proper error handling and user data storage.
 
-    developer.log(state.toString(), name: "sidul.register-notifier-provider");
+    developer.log(state.toJson().toString(), name: "sidul.register-notifier-provider");
   }
 }

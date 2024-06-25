@@ -14,7 +14,7 @@ class RegisterModel with _$RegisterModel {
     required Role role,
     required List<String> majors,
     required String fullName,
-    required String phoneNumber,
+    required  String phoneNumber,
     required DateTime dob,
     required String country,
   }) = _RegisterModel;

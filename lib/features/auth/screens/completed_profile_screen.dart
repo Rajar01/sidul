@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sidul/features/auth/providers/register_notifier_provider.dart';
+import 'package:sidul/features/auth/screens/success_create_account_screen.dart';
 import 'package:sidul/shared/widgets/button_widget.dart';
 import 'package:sidul/shared/widgets/date_field_widget.dart';
 import 'package:sidul/shared/widgets/dropdown_button_widget.dart';
@@ -128,12 +129,24 @@ class _CompletedProfileScreenState
                 children: [
                   HAButton(
                     text: "Lanjutkan",
-                    onPressed: () {},
+                    onPressed: () {
+                      ref.read(registerNotifierProvider.notifier).onRegisterButtonClicked();
+                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              const SuccessCreateAccountScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 8),
                   HAButton(
                     text: "Kembali",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     backgroundColor: Colors.transparent,
                     foregroundColor: const Color.fromARGB(255, 0, 111, 253),
                   ),
