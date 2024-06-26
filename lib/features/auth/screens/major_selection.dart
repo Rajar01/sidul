@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sidul/features/auth/providers/register_notifier_provider.dart';
-import 'package:sidul/features/auth/screens/completed_profile_screen.dart';
-import 'package:sidul/shared/widgets/button_widget.dart';
 
-class MajorSelectionScreen extends ConsumerStatefulWidget {
+class MajorSelectionScreen extends StatefulWidget {
   const MajorSelectionScreen({super.key});
 
   @override
-  ConsumerState<MajorSelectionScreen> createState() => _MajorSelectionState();
+  State<MajorSelectionScreen> createState() => _MajorSelectionScreenState();
 }
 
-class _MajorSelectionState extends ConsumerState<MajorSelectionScreen> {
+class _MajorSelectionScreenState extends State<MajorSelectionScreen> {
+  // TODO implement API call to get all majors
   final majors = <String>[
     "Akutansi",
     "Perkebunan",
@@ -25,83 +22,50 @@ class _MajorSelectionState extends ConsumerState<MajorSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedMajors = ref.watch(registerNotifierProvider).majors;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+    final selectedMajors = [majors.first];
 
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            children: [
-              const LinearProgressIndicator(
-                value: 50 / 100,
-                minHeight: 16,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                valueColor:
-                    AlwaysStoppedAnimation(Color.fromARGB(255, 0, 111, 253)),
-              ),
-              const SizedBox(height: 32),
-              Expanded(
-                child: Column(
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                LinearProgressIndicator(
+                  value: 0.5,
+                  minHeight: 16,
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
+                  valueColor: AlwaysStoppedAnimation(colorScheme.primary),
+                ),
+                const SizedBox(height: 32),
+                Column(
                   children: [
-                    const Text(
+                    Text(
                       "Jurusan apa yang ingin kamu pilih?",
+                      style: textTheme.titleLarge,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24,
-                      ),
                     ),
                     const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
                       child: Wrap(
-                        spacing: 16,
                         runSpacing: 16,
+                        spacing: 16,
                         children: majors
                             .map(
                               (major) => FilterChip(
-                                selectedColor:
-                                    const Color.fromARGB(255, 0, 111, 253),
-                                showCheckmark: false,
-                                labelStyle: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                  color: MaterialStateColor.resolveWith(
-                                    (states) {
-                                      if (states
-                                          .contains(MaterialState.selected)) {
-                                        return Colors.white;
-                                      } else {
-                                        return const Color.fromARGB(
-                                            255, 113, 114, 122);
-                                      }
-                                    },
-                                  ),
-                                ),
-                                shape: const RoundedRectangleBorder(
-                                  side: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(4),
-                                  ),
-                                ),
                                 label: Text(major),
-                                labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 12, vertical: 8),
+                                showCheckmark: false,
                                 selected: selectedMajors.contains(major),
-                                onSelected: (bool onSelected) {
-                                  if (onSelected) {
-                                    ref
-                                        .read(registerNotifierProvider.notifier)
-                                        .addMajorToSelection(major);
-                                  } else {
-                                    ref
-                                        .read(registerNotifierProvider.notifier)
-                                        .removeMajorFromSelection(major);
-                                  }
-                                },
+                                labelPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 8,
+                                ),
+                                onSelected: (_) {},
                               ),
                             )
                             .toList(),
@@ -109,33 +73,44 @@ class _MajorSelectionState extends ConsumerState<MajorSelectionScreen> {
                     )
                   ],
                 ),
-              ),
-              Column(
-                children: [
-                  HAButton(
-                    text: "Lanjutkan",
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CompletedProfileScreen(),
+              ],
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
                         ),
-                      );
-                    },
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Lanjutkan"),
                   ),
-                  const SizedBox(height: 8),
-                  HAButton(
-                    text: "Kembali",
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: const Color.fromARGB(255, 0, 111, 253),
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: TextButton(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Kembali"),
                   ),
-                ],
-              )
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

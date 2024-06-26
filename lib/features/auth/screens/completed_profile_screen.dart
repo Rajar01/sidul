@@ -1,159 +1,143 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sidul/features/auth/providers/register_notifier_provider.dart';
-import 'package:sidul/features/auth/screens/success_create_account_screen.dart';
-import 'package:sidul/shared/widgets/button_widget.dart';
-import 'package:sidul/shared/widgets/date_field_widget.dart';
-import 'package:sidul/shared/widgets/dropdown_button_widget.dart';
-import 'package:sidul/shared/widgets/input_field_widget.dart';
 
-class CompletedProfileScreen extends ConsumerStatefulWidget {
-  const CompletedProfileScreen({super.key});
+// TODO implement scroll view so that content does not get overflow when keyboard appear
+class CompleteProfileScreen extends StatefulWidget {
+  const CompleteProfileScreen({super.key});
 
   @override
-  ConsumerState<CompletedProfileScreen> createState() =>
-      _CompletedProfileScreenState();
+  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
 }
 
-class _CompletedProfileScreenState
-    extends ConsumerState<CompletedProfileScreen> {
-  final TextEditingController dobFieldController =
-      TextEditingController(text: DateTime.now().toString().split(" ")[0]);
-  final countries = <String>[
-    "Indonesia",
-    "Inggris",
-    "Belanda",
-  ];
-
+class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final dob = ref.watch(registerNotifierProvider).dob;
-    final country = ref.watch(registerNotifierProvider).country;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            children: [
-              const LinearProgressIndicator(
-                value: 1,
-                minHeight: 16,
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                valueColor:
-                    AlwaysStoppedAnimation(Color.fromARGB(255, 0, 111, 253)),
-              ),
-              const SizedBox(height: 32),
-              Expanded(
-                child: Column(
-                  children: [
-                    const Text(
-                      "Lengkapi data profil kamu",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    SizedBox(
-                      width: 96,
-                      height: 96,
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        fit: StackFit.expand,
-                        children: [
-                          const CircleAvatar(),
-                          Positioned(
-                            bottom: -8,
-                            right: -4,
-                            child: RawMaterialButton(
-                              constraints: const BoxConstraints(
-                                minWidth: 32,
-                                maxWidth: 32,
-                                minHeight: 32,
-                                maxHeight: 32,
-                              ),
-                              onPressed: () {},
-                              elevation: 2.0,
-                              fillColor: const Color(0xFFF5F6F9),
-                              shape: const CircleBorder(),
-                              child: const Icon(
-                                Icons.camera_alt,
-                                color: Colors.blue,
-                                size: 16,
-                              ),
-                            ),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                LinearProgressIndicator(
+                  value: 1,
+                  minHeight: 16,
+                  borderRadius:
+                      const BorderRadius.all(Radius.circular(16)),
+                  valueColor: AlwaysStoppedAnimation(colorScheme.primary),
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  "Lengkapi data profil kamu!",
+                  style: textTheme.titleLarge,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 32),
+                SizedBox(
+                  width: 96,
+                  height: 96,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    fit: StackFit.expand,
+                    children: [
+                      const CircleAvatar(),
+                      Positioned(
+                        bottom: -8,
+                        right: -4,
+                        child: RawMaterialButton(
+                          constraints: const BoxConstraints(
+                            minWidth: 32,
+                            maxWidth: 32,
+                            minHeight: 32,
+                            maxHeight: 32,
                           ),
-                        ],
+                          onPressed: () {},
+                          elevation: 2.0,
+                          fillColor: Colors.white,
+                          shape: const CircleBorder(),
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: colorScheme.primary,
+                            size: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Nama Lengkap",
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    HATextField(
-                      title: "Nama Lengkap",
-                      onChanged: ref
-                          .read(registerNotifierProvider.notifier)
-                          .fullNameFieldOnChange,
+                    const SizedBox(height: 16),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Nomor Telepon",
+                      ),
                     ),
                     const SizedBox(height: 16),
-                    HATextField(
-                      title: "Nomor Telepon",
-                      onChanged: ref
-                          .read(registerNotifierProvider.notifier)
-                          .phoneNumberFieldOnChange,
+                    InputDatePickerFormField(
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(2100),
+                      fieldLabelText: "Tanggal Lahir",
                     ),
                     const SizedBox(height: 16),
-                    HADateField(
-                      title: "Tanggal Lahir",
-                      dateFieldController: dobFieldController,
-                      onTap: () {
-                        ref
-                            .read(registerNotifierProvider.notifier)
-                            .dobFieldOnTap(context, dobFieldController);
-                      },
-                    ),
-                    const SizedBox(height: 16),
-                    HADropdownButton(
-                      title: "Negara",
-                      items: countries,
-                      onChanged: (value) => ref
-                          .read(registerNotifierProvider.notifier)
-                          .onCountryChanged(value!),
-                      value: country.isEmpty ? countries.first : country,
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Negara",
+                      ),
                     ),
                   ],
                 ),
-              ),
-              Column(
-                children: [
-                  HAButton(
-                    text: "Lanjutkan",
-                    onPressed: () {
-                      ref.read(registerNotifierProvider.notifier).onRegisterButtonClicked();
-                      
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const SuccessCreateAccountScreen(),
+              ],
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
                         ),
-                      );
-                    },
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Lanjutkan"),
                   ),
-                  const SizedBox(height: 8),
-                  HAButton(
-                    text: "Kembali",
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: const Color.fromARGB(255, 0, 111, 253),
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: TextButton(
+                    style: FilledButton.styleFrom(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4),
+                        ),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text("Kembali"),
                   ),
-                ],
-              )
-            ],
-          ),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );

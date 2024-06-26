@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SuccessCreateAccountScreen extends StatefulWidget {
-  const SuccessCreateAccountScreen({super.key});
+class SuccessCreateNewPasswordScreen extends StatefulWidget {
+  const SuccessCreateNewPasswordScreen({super.key});
 
   @override
-  State<SuccessCreateAccountScreen> createState() =>
-      _SuccessCreateAccountScreenState();
+  State<SuccessCreateNewPasswordScreen> createState() =>
+      _SuccessCreateNewPasswordScreenState();
 }
 
-class _SuccessCreateAccountScreenState
-    extends State<SuccessCreateAccountScreen> {
+class _SuccessCreateNewPasswordScreenState
+    extends State<SuccessCreateNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -21,17 +21,19 @@ class _SuccessCreateAccountScreenState
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Image(
+              width: 260,
+              height: 305,
               image: AssetImage(
-                  "assets/images/registration_success_ilustration.png"),
+                  "assets/images/create_new_password_success_ilustration.png"),
             ),
             const SizedBox(height: 32),
             Text(
-              "Pendaftaran Berhasil",
+              "Password Diperbarui",
               style: textTheme.titleLarge,
             ),
             const SizedBox(height: 8),
             Text(
-              "Akun anda telah berhasil dibuat",
+              "Password Anda telah diperbarui",
               style: textTheme.titleSmall,
             ),
             const SizedBox(height: 32),
@@ -47,7 +49,7 @@ class _SuccessCreateAccountScreenState
                   ),
                 ),
                 onPressed: () {},
-                child: const Text("Lanjutkan"),
+                child: const Text("Ke Halaman Masuk"),
               ),
             ),
           ],
