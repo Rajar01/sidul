@@ -1,144 +1,110 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sidul/features/auth/providers/register_notifier_provider.dart';
-import 'package:sidul/features/auth/screens/login_screen.dart';
-import 'package:sidul/features/auth/screens/role_selection_screen.dart';
-import 'package:sidul/shared/utils.dart';
-import 'package:sidul/shared/widgets/button_widget.dart';
-import 'package:sidul/shared/widgets/input_field_widget.dart';
-import 'package:sidul/shared/widgets/password_field_widget.dart';
 
-class RegisterScreen extends ConsumerStatefulWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
-  ConsumerState<RegisterScreen> createState() => _RegisterScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends ConsumerState<RegisterScreen> {
-  String confirmationPassword = "";
-  String usernameErrorMessage = "";
-  String emailErrorMessage = "";
-  String passwordErrorMessage = "";
-
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    final data = ref.watch(registerNotifierProvider);
+    final textTheme = Theme.of(context).textTheme;
 
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Column(
+    return Scaffold(
+      body: SizedBox(
+        height: double.infinity,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
                 children: [
-                  Text(
-                    "Pendaftaran",
-                    style: TextStyle(
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w900,
-                      fontSize: 24,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "Buat akun Anda",
-                    style: TextStyle(
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 48),
-              Column(
-                children: [
-                  HATextField(
-                    title: "Username",
-                    onChanged: ref
-                        .read(registerNotifierProvider.notifier)
-                        .usernameFieldOnChange,
-                  ),
-                  const SizedBox(height: 16),
-                  HATextField(
-                    title: "Email",
-                    onChanged: ref
-                        .read(registerNotifierProvider.notifier)
-                        .emailFieldOnChange,
-                  ),
-                  const SizedBox(height: 16),
-                  HAPasswordField(
-                    title: "Password",
-                    onChanged: ref
-                        .read(registerNotifierProvider.notifier)
-                        .passwordFieldOnChange,
-                  ),
-                  const SizedBox(height: 16),
-                  HAPasswordField(
-                    title: "Konfirmasi Password",
-                    onChanged: (String value) {
-                      setState(() {
-                        confirmationPassword = value;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 32),
-                  HAButton(
-                    text: "Daftar",
-                    onPressed: () {
-                      if (data.username.length <= 5) {
-                      } else if (!isValidEmail(data.email)) {
-                      } else if (confirmationPassword != data.password) {
-                      } else {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RoleSelectionScreen(),
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      const Text(
-                        "Sudah punya akun ? ",
-                        style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 113, 114, 122),
+                      Text(
+                        "Pendaftaran",
+                        style: textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Buat akun Anda",
+                        style: textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 48),
+                  Column(
+                    children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Username",
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Masuk",
-                          style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                            fontSize: 12,
-                            color: Color.fromARGB(255, 0, 111, 253),
-                          ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Email",
                         ),
-                      )
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Password",
+                          suffixIcon: Icon(Icons.visibility_off),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Konfirmasi Password",
+                          suffixIcon: Icon(Icons.visibility_off),
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: FilledButton(
+                          style: FilledButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(4),
+                              ),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: const Text("Daftar"),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Sudah punya akun ? ",
+                            style: textTheme.labelMedium,
+                          ),
+                          Text(
+                            "Masuk",
+                            style: textTheme.labelMedium!.copyWith(
+                              color: const Color.fromARGB(255, 0, 111, 253),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

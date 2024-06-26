@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -17,48 +17,28 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  color: Colors.grey,
-                ),
-                const SizedBox(height: 8),
                 Text(
-                  "SIDUL",
+                  "Lupa Password",
                   style: textTheme.titleLarge,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "Silahkan masukkan alamat email yang tertaut dengan akun Anda.",
+                  style: textTheme.titleSmall,
                 ),
               ],
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 32),
             Column(
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Username",
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Password",
-                    suffixIcon: Icon(Icons.visibility_off),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Lupa Password ?",
-                    style: textTheme.labelMedium!.copyWith(
-                      color: const Color.fromARGB(255, 0, 111, 253),
-                    ),
+                    labelText: "Email",
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -74,19 +54,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onPressed: () {},
-                    child: const Text("Masuk"),
+                    child: const Text("Kirim Kode"),
                   ),
                 ),
                 const SizedBox(height: 8),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Tidak punya akun ? ",
+                      "Ingat password Anda ? ",
                       style: textTheme.labelMedium,
                     ),
                     Text(
-                      "Daftar",
+                      "Masuk",
                       style: textTheme.labelMedium!.copyWith(
                         color: const Color.fromARGB(255, 0, 111, 253),
                       ),
