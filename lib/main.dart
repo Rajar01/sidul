@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sidul/features/auth/screens/confirmation_code_from_email_screen.dart';
-import 'package:sidul/features/auth/screens/create_new_password_screen.dart';
-import 'package:sidul/features/auth/screens/success_create_new_password_screen.dart';
+import 'package:sidul/features/module/screens/explore_screen.dart';
+import 'package:sidul/features/module/screens/filter_module_screen.dart';
+import 'package:sidul/features/module/screens/search_result_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SafeArea(
-        child: SuccessCreateNewPasswordScreen(),
+        child: FilterModuleScreen(),
       ),
     );
   }

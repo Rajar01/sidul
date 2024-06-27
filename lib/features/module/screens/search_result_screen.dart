@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sidul/shared/widgets/search_bar_widget.dart';
 
 class SearchResultScreen extends StatefulWidget {
   const SearchResultScreen({super.key});
@@ -11,83 +10,102 @@ class SearchResultScreen extends StatefulWidget {
 class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: Padding(
-            padding:
-                const EdgeInsets.only(bottom: 0, right: 32, left: 32, top: 32),
-            child: Row(
-              children: [
-                InkWell(
-                  customBorder: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  splashColor: Colors.grey.shade400,
-                  onTap: () {},
-                  child: Ink(
-                    height: 36,
-                    width: 36,
-                    child: const Icon(
-                      Icons.arrow_back,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                const Expanded(child: HASearchBar())
-              ],
-            ),
-          ),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 32, bottom: 0, left: 32, right: 32),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              mainAxisExtent: 245,
-            ),
-            itemBuilder: (context, index) {
-              return GridTile(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      // color: Colors.grey,
-                      height: 192,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 1),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Valorant Guide To Radiant",
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w800,
-                        fontSize: 14,
-                      ),
-                      maxLines: 1,
-                    ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      "Dzauqi Legend",
-                      style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                      ),
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(88),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              IconButton(
+                color: colorScheme.primary,
+                iconSize: 32,
+                onPressed: () {},
+                icon: const Icon(Icons.chevron_left),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: SearchBar(
+                  leading: const Icon(Icons.search),
+                  trailing: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.filter_alt),
                     ),
                   ],
+                  shadowColor:
+                      const MaterialStatePropertyAll(Colors.transparent),
+                  surfaceTintColor:
+                      const MaterialStatePropertyAll(Colors.transparent),
+                  shape: const MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      side: BorderSide(width: 1),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4),
+                      ),
+                    ),
+                  ),
                 ),
-              );
-            },
+              )
+            ],
+          ),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 0,
+          bottom: 16,
+          right: 16,
+          left: 16,
+        ),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
+            mainAxisExtent: 296,
+          ),
+          itemCount: 11,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: () {},
+            child: Card.filled(
+              color: Colors.transparent,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    child: Image(
+                      fit: BoxFit.fitWidth,
+                      height: 224,
+                      image: AssetImage("assets/images/book_cover_1.jpeg"),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Valorant Guide To Radiant",
+                          style: textTheme.titleMedium,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          "Dzauqi Legend",
+                          style: textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),

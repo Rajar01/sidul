@@ -18,6 +18,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   stylish_bottom_bar: ^1.1.0
   http: ^1.2.1
+  carousel_slider: ^4.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

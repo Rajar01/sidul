@@ -110,7 +110,7 @@ class _ConfirmationCodeFromEmailScreenState
                   height: 48,
                   child: OutlinedButton(
                     onPressed: () {},
-                    style: FilledButton.styleFrom(
+                    style: OutlinedButton.styleFrom(
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(4),
