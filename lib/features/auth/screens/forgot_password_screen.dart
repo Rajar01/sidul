@@ -1,77 +1,66 @@
 import 'package:flutter/material.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  const ForgotPasswordScreen({super.key});
+class ForgorPasswordScreen extends StatefulWidget {
+  const ForgorPasswordScreen({super.key});
 
   @override
-  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<ForgorPasswordScreen> createState() => _ForgorPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+class _ForgorPasswordScreenState extends State<ForgorPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: const BackButtonIcon(),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Lupa Password",
-                  style: textTheme.titleLarge,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Silahkan masukkan alamat email yang tertaut dengan akun Anda.",
-                  style: textTheme.titleSmall,
-                ),
-              ],
+            Text(
+              "Lupa Password",
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 32),
-            Column(
+            const SizedBox(height: 2),
+            Text(
+              "Silahkan masukkan alamat email yang tertaut dengan akun Anda.",
+              style: theme.textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Email"),
+              ),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {},
+                child: const Text("Kirim Kode"),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Email",
-                  ),
+                Text(
+                  "Ingat password Anda ? ",
+                  style: theme.textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
+                GestureDetector(
+                  child: Text(
+                    "Masuk",
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      color: theme.colorScheme.primary,
                     ),
-                    onPressed: () {},
-                    child: const Text("Kirim Kode"),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Ingat password Anda ? ",
-                      style: textTheme.labelMedium,
-                    ),
-                    Text(
-                      "Masuk",
-                      style: textTheme.labelMedium!.copyWith(
-                        color: const Color.fromARGB(255, 0, 111, 253),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

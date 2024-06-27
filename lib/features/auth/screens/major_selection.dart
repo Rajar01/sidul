@@ -8,30 +8,23 @@ class MajorSelectionScreen extends StatefulWidget {
 }
 
 class _MajorSelectionScreenState extends State<MajorSelectionScreen> {
-  // TODO implement API call to get all majors
-  final majors = <String>[
-    "Akutansi",
-    "Perkebunan",
-    "Teknik Elektronika",
+  final majors = [
     "Teknik Informatika",
-    "Sastra",
-    "Pervaloan",
-    "Teknik Listrik",
-    "Kedokteran",
+    "Akutansi",
+    "Perikanan",
+    "Teknik Elektro",
+    "Administrasi Negara",
+    "Hubungan Internasional",
   ];
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
-    final selectedMajors = [majors.first];
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               children: [
@@ -39,75 +32,52 @@ class _MajorSelectionScreenState extends State<MajorSelectionScreen> {
                   value: 0.5,
                   minHeight: 16,
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
-                  valueColor: AlwaysStoppedAnimation(colorScheme.primary),
+                  valueColor: AlwaysStoppedAnimation(theme.colorScheme.primary),
                 ),
-                const SizedBox(height: 32),
-                Column(
-                  children: [
-                    Text(
-                      "Jurusan apa yang ingin kamu pilih?",
-                      style: textTheme.titleLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Wrap(
-                        runSpacing: 16,
-                        spacing: 16,
-                        children: majors
-                            .map(
-                              (major) => FilterChip(
-                                label: Text(major),
-                                showCheckmark: false,
-                                selected: selectedMajors.contains(major),
-                                labelPadding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                onSelected: (_) {},
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text("Lanjutkan"),
-                  ),
+                const SizedBox(height: 16),
+                Text(
+                  "Jurusan apa yang ingin kamu pilih?",
+                  style: theme.textTheme.headlineSmall,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
-                  height: 48,
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: majors
+                        .map(
+                          (major) => ChoiceChip(
+                            label: Text(major),
+                            selected: false,
+                            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 12),
+                            onSelected: (_) {},
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(child: Container()),
+            Column(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: () {},
+                    child: const Text("Lanjutkan"),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                SizedBox(
+                  width: double.infinity,
                   child: TextButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
                     onPressed: () {},
                     child: const Text("Kembali"),
                   ),
-                )
+                ),
               ],
             ),
           ],

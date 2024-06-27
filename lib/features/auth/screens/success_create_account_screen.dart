@@ -12,42 +12,35 @@ class _SuccessCreateAccountScreenState
     extends State<SuccessCreateAccountScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Image(
-              image: AssetImage(
-                  "assets/images/registration_success_ilustration.png"),
+            Image.asset(
+              "assets/images/registration_success_ilustration.png",
+              width: 260,
+              height: 260,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             Text(
               "Pendaftaran Berhasil",
-              style: textTheme.titleLarge,
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
               "Akun anda telah berhasil dibuat",
-              style: textTheme.titleSmall,
+              style: theme.textTheme.bodyLarge,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              height: 48,
               child: FilledButton(
-                style: FilledButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(4),
-                    ),
-                  ),
-                ),
                 onPressed: () {},
-                child: const Text("Lanjutkan"),
+                child: const Text("Masuk"),
               ),
             ),
           ],

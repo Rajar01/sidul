@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_verification_code/flutter_verification_code.dart';
 
 class ConfirmationCodeFromEmailScreen extends StatefulWidget {
   const ConfirmationCodeFromEmailScreen({super.key});
@@ -12,117 +13,57 @@ class _ConfirmationCodeFromEmailScreenState
     extends State<ConfirmationCodeFromEmailScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: const BackButtonIcon(),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Konfirmasi Kode",
-                  style: textTheme.titleLarge,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Silahkan masukkan kode yang telah kami kirim ke email Anda untuk melanjutkan proses ini.",
-                  style: textTheme.titleSmall,
-                ),
-              ],
+            Text(
+              "Konfirmasi Kode",
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 48),
-            // TODO implement only accept one number in each number text field
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 48,
-                  height: 48,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                SizedBox(width: 32),
-                SizedBox(
-                  width: 48,
-                  height: 48,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                SizedBox(width: 32),
-                SizedBox(
-                  width: 48,
-                  height: 48,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-                SizedBox(width: 32),
-                SizedBox(
-                  width: 48,
-                  height: 48,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 2),
+            Text(
+              "Silahkan masukkan kode yang telah kami kirim ke email Anda untuk melanjutkan proses ini.",
+              style: theme.textTheme.bodyMedium,
             ),
-            const SizedBox(height: 48),
-            Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    onPressed: () {},
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    child: const Text(
-                      "Konfirmasi",
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    child: const Text(
-                      "Kirim Ulang Kode",
-                    ),
-                  ),
-                )
-              ],
+            const SizedBox(height: 24),
+            Align(
+              alignment: Alignment.center,
+              child: VerificationCode(
+                keyboardType: TextInputType.number,
+                length: 4,
+                fullBorder: true,
+                itemSize: 48,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                digitsOnly: true,
+                padding: const EdgeInsets.all(4),
+                onCompleted: (String value) {},
+                onEditing: (bool value) {},
+              ),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {},
+                child: const Text("Konfirmasi"),
+              ),
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {},
+                child: const Text("Kirim Ulang Kode"),
+              ),
             ),
           ],
         ),
