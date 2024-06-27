@@ -10,91 +10,79 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  color: Colors.grey,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  "SIDUL",
-                  style: textTheme.titleLarge,
-                ),
-              ],
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.grey,
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 32),
             Column(
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "Username",
+                    label: Text("Username"),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 TextFormField(
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Password",
-                    suffixIcon: Icon(Icons.visibility_off),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    label: const Text("Password"),
+                    suffixIcon: GestureDetector(
+                      child: const Icon(Icons.visibility_off),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "Lupa Password ?",
-                    style: textTheme.labelMedium!.copyWith(
-                      color: const Color.fromARGB(255, 0, 111, 253),
+                const SizedBox(height: 4),
+                GestureDetector(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      "Lupa password ?",
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,
-                  height: 48,
                   child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
                     onPressed: () {},
                     child: const Text("Masuk"),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 4),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Tidak punya akun ? ",
-                      style: textTheme.labelMedium,
+                      style: theme.textTheme.bodyMedium,
                     ),
-                    Text(
-                      "Daftar",
-                      style: textTheme.labelMedium!.copyWith(
-                        color: const Color.fromARGB(255, 0, 111, 253),
+                    GestureDetector(
+                      child: Text(
+                        "Daftar",
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ],
-            ),
+            )
           ],
         ),
       ),

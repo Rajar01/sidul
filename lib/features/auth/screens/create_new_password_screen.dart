@@ -11,65 +11,53 @@ class CreateNewPasswordScreen extends StatefulWidget {
 class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Password Baru",
-                  style: textTheme.titleLarge,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Password baru Anda harus berbeda dengan password yang digunakan sebelumnya.",
-                  style: textTheme.titleSmall,
-                ),
-              ],
+            Text(
+              "Password Baru",
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 32),
-            Column(
-              children: [
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Password",
-                    suffixIcon: Icon(Icons.visibility_off),
-                  ),
+            const SizedBox(height: 2),
+            Text(
+              "Password baru Anda harus berbeda dengan password yang digunakan sebelumnya.",
+              style: theme.textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 16),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                label: const Text("Password"),
+                suffixIcon: GestureDetector(
+                  child: const Icon(Icons.visibility_off),
                 ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: "Konfirmasi Password",
-                    suffixIcon: Icon(Icons.visibility_off),
-                  ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                label: const Text("Konfirmasi Password"),
+                suffixIcon: GestureDetector(
+                  child: const Icon(Icons.visibility_off),
                 ),
-                const SizedBox(height: 32),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: const Text("Lanjutkan"),
-                  ),
-                ),
-              ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {},
+                child: const Text("Lanjutkan"),
+              ),
             ),
           ],
         ),

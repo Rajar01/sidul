@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 
-// TODO implement scroll view so that content does not get overflow when keyboard appear
-class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+class CompleteYourProfileScreen extends StatefulWidget {
+  const CompleteYourProfileScreen({super.key});
 
   @override
-  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
+  State<CompleteYourProfileScreen> createState() =>
+      _CompleteYourProfileScreenState();
 }
 
-class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
+class _CompleteYourProfileScreenState extends State<CompleteYourProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               children: [
@@ -28,23 +26,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   minHeight: 16,
                   borderRadius:
                       const BorderRadius.all(Radius.circular(16)),
-                  valueColor: AlwaysStoppedAnimation(colorScheme.primary),
+                  valueColor:
+                      AlwaysStoppedAnimation(theme.colorScheme.primary),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 16),
                 Text(
-                  "Lengkapi data profil kamu!",
-                  style: textTheme.titleLarge,
+                  "Lengkapi data profil kamu",
+                  style: theme.textTheme.headlineSmall,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
                 SizedBox(
-                  width: 96,
-                  height: 96,
+                  height: 128,
+                  width: 128,
                   child: Stack(
                     clipBehavior: Clip.none,
                     fit: StackFit.expand,
                     children: [
-                      const CircleAvatar(),
+                      CircleAvatar(radius: 64),
                       Positioned(
                         bottom: -8,
                         right: -4,
@@ -61,7 +60,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           shape: const CircleBorder(),
                           child: Icon(
                             Icons.camera_alt,
-                            color: colorScheme.primary,
+                            color: theme.colorScheme.primary,
                             size: 16,
                           ),
                         ),
@@ -69,73 +68,49 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 32),
-                Column(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Nama Lengkap",
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Nomor Telepon",
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    InputDatePickerFormField(
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2100),
-                      fieldLabelText: "Tanggal Lahir",
-                    ),
-                    const SizedBox(height: 16),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Negara",
-                      ),
-                    ),
-                  ],
+                SizedBox(height: 24),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text("Nama Lengkap"),
+                  ),
+                ),
+                SizedBox(height: 12),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text("Nomor Handphone"),
+                  ),
+                ),
+                SizedBox(height: 12),
+                InputDatePickerFormField(
+                  fieldLabelText: "Tanggal Lahir",
+                  firstDate: DateTime(1900),
+                  lastDate: DateTime(2100),
                 ),
               ],
             ),
-            Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: FilledButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: () {},
+                      child: const Text("Lanjutkan"),
                     ),
-                    onPressed: () {},
-                    child: const Text("Lanjutkan"),
                   ),
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48,
-                  child: TextButton(
-                    style: FilledButton.styleFrom(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
+                  const SizedBox(height: 4),
+                  SizedBox(
+                    width: double.infinity,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text("Kembali"),
                     ),
-                    onPressed: () {},
-                    child: const Text("Kembali"),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ],
         ),

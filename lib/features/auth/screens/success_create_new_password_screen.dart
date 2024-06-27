@@ -4,52 +4,41 @@ class SuccessCreateNewPasswordScreen extends StatefulWidget {
   const SuccessCreateNewPasswordScreen({super.key});
 
   @override
-  State<SuccessCreateNewPasswordScreen> createState() =>
-      _SuccessCreateNewPasswordScreenState();
+  State<SuccessCreateNewPasswordScreen> createState() => _SuccessCreateNewPasswordScreenState();
 }
 
-class _SuccessCreateNewPasswordScreenState
-    extends State<SuccessCreateNewPasswordScreen> {
+class _SuccessCreateNewPasswordScreenState extends State<SuccessCreateNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Image(
+            Image.asset(
+              "assets/images/create_new_password_success_ilustration.png",
               width: 260,
-              height: 305,
-              image: AssetImage(
-                  "assets/images/create_new_password_success_ilustration.png"),
+              height: 260,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             Text(
               "Password Diperbarui",
-              style: textTheme.titleLarge,
+              style: theme.textTheme.headlineSmall,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
             Text(
-              "Password Anda telah diperbarui",
-              style: textTheme.titleSmall,
+              "Password Anda telah berhasil diperbarui",
+              style: theme.textTheme.bodyLarge,
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              height: 48,
               child: FilledButton(
-                style: FilledButton.styleFrom(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(4),
-                    ),
-                  ),
-                ),
                 onPressed: () {},
-                child: const Text("Ke Halaman Masuk"),
+                child: const Text("Masuk"),
               ),
             ),
           ],

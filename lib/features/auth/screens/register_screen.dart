@@ -10,102 +10,80 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
-      body: SizedBox(
-        height: double.infinity,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(32),
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        "Pendaftaran",
-                        style: textTheme.titleLarge,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "Buat akun Anda",
-                        style: textTheme.titleSmall,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 48),
-                  Column(
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Username",
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Email",
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Password",
-                          suffixIcon: Icon(Icons.visibility_off),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Konfirmasi Password",
-                          suffixIcon: Icon(Icons.visibility_off),
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 48,
-                        child: FilledButton(
-                          style: FilledButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Text("Daftar"),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Sudah punya akun ? ",
-                            style: textTheme.labelMedium,
-                          ),
-                          Text(
-                            "Masuk",
-                            style: textTheme.labelMedium!.copyWith(
-                              color: const Color.fromARGB(255, 0, 111, 253),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Text(
+                  "Pendaftaran",
+                  style: theme.textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 2),
+                Text("Buat akun Anda", style: theme.textTheme.bodyLarge),
+              ],
             ),
-          ),
+            const SizedBox(height: 32),
+            Column(
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text("Username"),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    label: Text("Email"),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    label: const Text("Password"),
+                    suffixIcon: GestureDetector(
+                      child: const Icon(Icons.visibility_off),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: () {},
+                    child: const Text("Daftar"),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Sudah punya akun ? ",
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                    GestureDetector(
+                      child: Text(
+                        "Masuk",
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
