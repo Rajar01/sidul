@@ -10,6 +10,7 @@ import 'package:sidul/features/auth/screens/register_screen.dart';
 import 'package:sidul/features/auth/screens/role_selection_screen.dart';
 import 'package:sidul/features/auth/screens/success_create_account_screen.dart';
 import 'package:sidul/features/auth/screens/success_create_new_password_screen.dart';
+import 'package:sidul/features/notification/screens/notification_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SafeArea(
-        child: SuccessCreateNewPasswordScreen(),
+        child: NotificationScreen(),
       ),
     );
   }
