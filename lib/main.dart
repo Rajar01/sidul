@@ -12,6 +12,9 @@ import 'package:sidul/features/module/screens/module_discussion_screen.dart';
 import 'package:sidul/features/module/screens/module_review_screen.dart';
 import 'package:sidul/features/module/screens/module_screen.dart';
 import 'package:sidul/features/module/screens/search_result_screen.dart';
+import 'package:sidul/features/module_upload/screens/module_upload_screen.dart';
+import 'package:sidul/features/module_upload/screens/module_upload_success_screen.dart';
+import 'package:sidul/features/module_upload/screens/uploaded_module_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -34,7 +37,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SafeArea(
-        child: DonwloadedModuleScreen(),
+        child: UploadedModuleScreen(),
       ),
     );
   }
