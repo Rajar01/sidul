@@ -10,101 +10,119 @@ class SearchResultScreen extends StatefulWidget {
 class _SearchResultScreenState extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(88),
+        preferredSize: const Size.fromHeight(80),
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Row(
+          child: Column(
             children: [
-              IconButton(
-                color: colorScheme.primary,
-                iconSize: 32,
-                onPressed: () {},
-                icon: const Icon(Icons.chevron_left),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: SearchBar(
-                  leading: const Icon(Icons.search),
-                  trailing: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.filter_alt),
-                    ),
-                  ],
-                  shadowColor:
-                      const MaterialStatePropertyAll(Colors.transparent),
-                  surfaceTintColor:
-                      const MaterialStatePropertyAll(Colors.transparent),
-                  shape: const MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                      side: BorderSide(width: 1),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+              Row(
+                children: [
+                  const BackButtonIcon(),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: SearchAnchor(
+                      suggestionsBuilder: (context, controller) =>
+                          List<ListTile>.generate(
+                        15,
+                        (index) => ListTile(
+                          title: Text("Pencarian Sebelumnya $index"),
+                          onTap: () {
+                            setState(() {
+                              controller
+                                  .closeView("Pencarian Sebelumnya $index");
+                            });
+                          },
+                        ),
+                      ),
+                      builder: (context, controller) => SearchBar(
+                        controller: controller,
+                        onTap: () {
+                          controller.openView();
+                        },
+                        onChanged: (_) {
+                          controller.openView();
+                        },
+                        hintText: "Telusuri Modul",
+                        leading: const Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Icon(Icons.search),
+                        ),
+                        trailing: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Icon(Icons.filter_alt),
+                            ),
+                          ),
+                        ],
+                        backgroundColor: MaterialStatePropertyAll(
+                            theme.colorScheme.primaryContainer),
+                        surfaceTintColor: const MaterialStatePropertyAll(
+                          Colors.transparent,
+                        ),
+                        shadowColor: const MaterialStatePropertyAll(
+                          Colors.transparent,
+                        ),
+                        constraints:
+                            const BoxConstraints.tightForFinite(height: 48),
                       ),
                     ),
                   ),
-                ),
-              )
+                ],
+              ),
             ],
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 0,
-          bottom: 16,
-          right: 16,
-          left: 16,
+      body: GridView.builder(
+        itemCount: 11,
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          mainAxisExtent: 296,
         ),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            mainAxisExtent: 296,
-          ),
-          itemCount: 11,
-          itemBuilder: (context, index) => GestureDetector(
-            onTap: () {},
-            child: Card.filled(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                    child: Image(
-                      fit: BoxFit.fitWidth,
-                      height: 224,
-                      image: AssetImage("assets/images/book_cover_1.jpeg"),
-                    ),
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {},
+          child: Card.filled(
+            color: Colors.transparent,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                  child: Image(
+                    fit: BoxFit.fitWidth,
+                    height: 224,
+                    image: AssetImage("assets/images/book_cover_1.jpeg"),
                   ),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Valorant Guide To Radiant",
-                          style: textTheme.titleMedium,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "Dzauqi Legend",
-                          style: textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Valorant Guide To Radiant",
+                        style: theme.textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        "Dzauqi Legend",
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
