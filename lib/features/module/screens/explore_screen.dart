@@ -21,67 +21,74 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.book),
-        titleSpacing: 0,
+        title: Text("Ekplorasi"),
         scrolledUnderElevation: 0,
-        title: Text(
-          "Eksplorasi",
-          style: textTheme.titleMedium,
-        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
+      bottomNavigationBar: NavigationBar(
+        surfaceTintColor: theme.colorScheme.onPrimary,
+        height: 72,
+        indicatorColor: theme.colorScheme.primary,
+        selectedIndex: 1,
+        destinations: [
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.home_filled,
+              color: theme.colorScheme.onPrimary,
+            ),
+            icon: const Icon(Icons.home_filled),
             label: "Beranda",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.explore,
+              color: theme.colorScheme.onPrimary,
+            ),
             icon: Icon(Icons.explore),
             label: "Eksplorasi",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.bookmark,
+              color: theme.colorScheme.onPrimary,
+            ),
             icon: Icon(Icons.bookmark),
             label: "Bookmark",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.cloud_download,
+              color: theme.colorScheme.onPrimary,
+            ),
             icon: Icon(Icons.cloud_download),
             label: "Unduhan",
-          ),
+          )
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(
-          top: 0,
-          bottom: 0,
-          right: 16,
-          left: 16,
-        ),
+        padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Modul Teratas",
-                        style: textTheme.titleMedium,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.chevron_right),
-                      ),
-                    ],
+                  GestureDetector(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Modul Teratas",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        const Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 12),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
@@ -110,14 +117,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               const SizedBox(height: 8),
                               Text(
                                 "Valorant Guide To Radiant",
-                                style: textTheme.titleMedium,
+                                style: theme.textTheme.titleMedium,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 "Dzauqi Legend",
-                                style: textTheme.bodyMedium,
+                                style: theme.textTheme.bodyMedium,
                               ),
                             ],
                           ),
@@ -127,23 +134,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Unduhan Teratas",
-                        style: textTheme.titleMedium,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.chevron_right),
-                      ),
-                    ],
+                  GestureDetector(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Unduhan Teratas",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        const Icon(Icons.arrow_forward)
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 12),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Wrap(
@@ -172,14 +178,14 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               const SizedBox(height: 8),
                               Text(
                                 "Valorant Guide To Radiant",
-                                style: textTheme.titleMedium,
+                                style: theme.textTheme.titleMedium,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 "Dzauqi Legend",
-                                style: textTheme.bodyMedium,
+                                style: theme.textTheme.bodyMedium,
                               ),
                             ],
                           ),
@@ -189,23 +195,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Kategori Pilihan Kamu",
-                        style: textTheme.titleMedium,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.chevron_right),
-                      ),
-                    ],
+                  GestureDetector(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Kategori Pilihan Kamu",
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        const Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
                     child: Wrap(
@@ -229,7 +234,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               Column(
                 children: [
                   Row(
@@ -237,15 +242,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     children: [
                       Text(
                         "Kategori Lainnya",
-                        style: textTheme.titleMedium,
+                        style: theme.textTheme.titleMedium,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.chevron_right),
-                      ),
+                      const Icon(Icons.arrow_forward),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
                     child: Wrap(
@@ -253,23 +255,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       children: categories
                           .map(
                             (category) => OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4),
+                              onPressed: () {},
+                              style: OutlinedButton.styleFrom(
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
+                                  ),
+                                ),
                               ),
+                              child: Text(category),
                             ),
-                          ),
-                          child: Text(category),
-                        ),
-                      )
+                          )
                           .toList(),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
             ],
           ),
         ),
