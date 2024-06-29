@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sidul/features/auth/screens/forgot_password_screen.dart';
+import 'package:sidul/features/auth/screens/login_screen.dart';
+import 'package:sidul/features/auth/screens/register_screen.dart';
 import 'package:sidul/features/module/screens/about_module_screen.dart';
 import 'package:sidul/features/module/screens/bookmark_screen.dart';
 import 'package:sidul/features/module/screens/downloaded_module_screen.dart';
@@ -28,16 +31,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sidul',
       debugShowCheckedModeBanner: false,
-      // TODO implement a textTheme
       theme: ThemeData(
-        fontFamily: "Inter",
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(255, 0, 111, 253),
         ),
         useMaterial3: true,
       ),
       home: const SafeArea(
-        child: UploadedModuleScreen(),
+        child: LoginScreen(),
       ),
     );
   }

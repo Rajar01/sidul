@@ -18,68 +18,64 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 80,
-              height: 80,
-              color: Colors.grey,
+            Image.asset(
+              "assets/images/logo_large.png",
+              width: 148,
+              height: 84,
             ),
             const SizedBox(height: 32),
-            Column(
+            TextFormField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                label: Text("Username"),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              obscureText: true,
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                label: const Text("Password"),
+                suffixIcon: GestureDetector(
+                  child: const Icon(Icons.visibility_off),
+                ),
+              ),
+            ),
+            const SizedBox(height: 4),
+            GestureDetector(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  "Lupa password ?",
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {},
+                child: const Text("Masuk"),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextFormField(
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text("Username"),
-                  ),
+                Text(
+                  "Tidak punya akun ? ",
+                  style: theme.textTheme.bodyMedium,
                 ),
-                const SizedBox(height: 12),
-                TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    label: const Text("Password"),
-                    suffixIcon: GestureDetector(
-                      child: const Icon(Icons.visibility_off),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
                 GestureDetector(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Lupa password ?",
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
+                  child: Text(
+                    "Daftar",
+                    style: theme.textTheme.bodyMedium!.copyWith(
+                      color: theme.colorScheme.primary,
                     ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: () {},
-                    child: const Text("Masuk"),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Tidak punya akun ? ",
-                      style: theme.textTheme.bodyMedium,
-                    ),
-                    GestureDetector(
-                      child: Text(
-                        "Daftar",
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.primary,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             )
