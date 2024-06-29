@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:developer' as developer;
 
+import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sidul/features/auth/models/login_model.dart';
 
@@ -20,9 +22,20 @@ class LoginNotifier extends _$LoginNotifier {
     state = state.copyWith(username: state.username, password: password);
   }
 
-  void onLoginButtonClicked() {
-    // TODO implement API call logic for user login with proper error handling and user data storage.
+  Future<http.Response> onLoginButtonClicked() async {
+    final response = await http.post(
+      Uri.parse("http://192.168.100.189:8080/api/v1/accounts/login"),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        "username": state.username,
+        "password": state.password,
+      }),
+    );
 
-    developer.log(state.toString(), name: "sidul.login-notifier-provider");
+    // TODO implement hive box to store token from response
+
+    return response;
   }
 }

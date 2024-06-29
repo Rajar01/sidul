@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sidul/features/module/screens/home_screen.dart';
 
 class SuccessCreateAccountScreen extends StatefulWidget {
   const SuccessCreateAccountScreen({super.key});
@@ -39,7 +40,15 @@ class _SuccessCreateAccountScreenState
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                    (Route<dynamic> route) => false,
+                  );
+                },
                 child: const Text("Masuk"),
               ),
             ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sidul/features/auth/screens/completed_profile_screen.dart';
 import 'package:sidul/features/auth/screens/forgot_password_screen.dart';
 import 'package:sidul/features/auth/screens/login_screen.dart';
+import 'package:sidul/features/auth/screens/major_selection.dart';
 import 'package:sidul/features/auth/screens/register_screen.dart';
+import 'package:sidul/features/auth/screens/role_selection_screen.dart';
 import 'package:sidul/features/module/screens/about_module_screen.dart';
 import 'package:sidul/features/module/screens/bookmark_screen.dart';
 import 'package:sidul/features/module/screens/downloaded_module_screen.dart';
@@ -37,9 +40,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const SafeArea(
-        child: LoginScreen(),
-      ),
+      home: const LoginScreen(),
     );
   }
 }

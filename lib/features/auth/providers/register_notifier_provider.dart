@@ -1,10 +1,11 @@
+import 'dart:convert';
 import 'dart:developer' as developer;
 
-import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sidul/features/auth/models/register_model.dart';
 import 'package:sidul/shared/enums/role.dart';
-import 'package:http/http.dart';
 
 part 'register_notifier_provider.g.dart';
 
@@ -17,11 +18,10 @@ class RegisterNotifier extends _$RegisterNotifier {
       email: "",
       password: "",
       role: Role.learner,
-      majors: <String>[""],
+      major: "",
       fullName: "",
       phoneNumber: "",
       dob: DateTime.now(),
-      country: "Indonesia",
     );
   }
 
@@ -41,17 +41,8 @@ class RegisterNotifier extends _$RegisterNotifier {
     state = state.copyWith(role: role);
   }
 
-  void addMajorToSelection(String major) {
-    state = state.copyWith(majors: [...state.majors, major]);
-  }
-
-  void removeMajorFromSelection(String major) {
-    state = state.copyWith(
-        majors: state.majors
-            .where(
-              (m) => m != major,
-            )
-            .toList());
+  void majorOnChange(String major) {
+    state = state.copyWith(major: major);
   }
 
   void fullNameFieldOnChange(String fullName) {
@@ -62,32 +53,32 @@ class RegisterNotifier extends _$RegisterNotifier {
     state = state.copyWith(phoneNumber: phoneNumber);
   }
 
-  void dobFieldOnTap(
-    // ignore: avoid_build_context_in_providers
-    BuildContext context,
-    TextEditingController textEditingController,
-  ) async {
-    final dob = await showDatePicker(
-        context: context,
-        initialDate: state.dob,
-        firstDate: DateTime(1900),
-        lastDate: DateTime(2100));
-
-    if (dob != null) {
-      textEditingController.text = dob.toString().split(" ")[0];
-      state = state.copyWith(dob: dob);
-      developer.log(state.dob.toString(),
-          name: "sidul.register-notifier-provider");
-    }
+  void onDobSubmitted(DateTime date) {
+    state = state.copyWith(dob: date);
   }
 
-  void onCountryChanged(String country) {
-    state = state.copyWith(country: country);
-  }
+  Future<Map<String, dynamic>> onSubmitRegistration() async {
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://192.168.100.189:8080/api/v1/accounts/register"),
+    );
 
-  void onRegisterButtonClicked() async {
-    // TODO implement API call logic for user register with proper error handling and user data storage.
+    request.fields["fullname"] = state.fullName;
+    request.fields["username"] = state.username;
+    request.fields["email"] = state.email;
+    request.fields["phone_number"] = state.phoneNumber;
+    request.fields["dob"] = DateFormat('yyyy-MM-dd').format(state.dob);
+    request.fields["role"] = state.role.name.toUpperCase();
+    request.fields["password"] = state.password;
+    request.fields["major"] = state.major;
 
-    developer.log(state.toJson().toString(), name: "sidul.register-notifier-provider");
+    final streamedResponse = await request.send();
+
+    // TODO implement hive box to store token from response
+    final response = await streamedResponse.stream.bytesToString();
+
+    developer.inspect(jsonDecode(response));
+
+    return jsonDecode(response);
   }
 }

@@ -24,11 +24,10 @@ mixin _$RegisterModel {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   Role get role => throw _privateConstructorUsedError;
-  List<String> get majors => throw _privateConstructorUsedError;
+  String get major => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   DateTime get dob => throw _privateConstructorUsedError;
-  String get country => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,11 +46,10 @@ abstract class $RegisterModelCopyWith<$Res> {
       String email,
       String password,
       Role role,
-      List<String> majors,
+      String major,
       String fullName,
       String phoneNumber,
-      DateTime dob,
-      String country});
+      DateTime dob});
 }
 
 /// @nodoc
@@ -71,11 +69,10 @@ class _$RegisterModelCopyWithImpl<$Res, $Val extends RegisterModel>
     Object? email = null,
     Object? password = null,
     Object? role = null,
-    Object? majors = null,
+    Object? major = null,
     Object? fullName = null,
     Object? phoneNumber = null,
     Object? dob = null,
-    Object? country = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -94,10 +91,10 @@ class _$RegisterModelCopyWithImpl<$Res, $Val extends RegisterModel>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
-      majors: null == majors
-          ? _value.majors
-          : majors // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      major: null == major
+          ? _value.major
+          : major // ignore: cast_nullable_to_non_nullable
+              as String,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -110,10 +107,6 @@ class _$RegisterModelCopyWithImpl<$Res, $Val extends RegisterModel>
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
@@ -131,11 +124,10 @@ abstract class _$$RegisterModelImplCopyWith<$Res>
       String email,
       String password,
       Role role,
-      List<String> majors,
+      String major,
       String fullName,
       String phoneNumber,
-      DateTime dob,
-      String country});
+      DateTime dob});
 }
 
 /// @nodoc
@@ -153,11 +145,10 @@ class __$$RegisterModelImplCopyWithImpl<$Res>
     Object? email = null,
     Object? password = null,
     Object? role = null,
-    Object? majors = null,
+    Object? major = null,
     Object? fullName = null,
     Object? phoneNumber = null,
     Object? dob = null,
-    Object? country = null,
   }) {
     return _then(_$RegisterModelImpl(
       username: null == username
@@ -176,10 +167,10 @@ class __$$RegisterModelImplCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as Role,
-      majors: null == majors
-          ? _value._majors
-          : majors // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      major: null == major
+          ? _value.major
+          : major // ignore: cast_nullable_to_non_nullable
+              as String,
       fullName: null == fullName
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
@@ -192,10 +183,6 @@ class __$$RegisterModelImplCopyWithImpl<$Res>
           ? _value.dob
           : dob // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      country: null == country
-          ? _value.country
-          : country // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
@@ -208,12 +195,10 @@ class _$RegisterModelImpl implements _RegisterModel {
       required this.email,
       required this.password,
       required this.role,
-      required final List<String> majors,
+      required this.major,
       required this.fullName,
       required this.phoneNumber,
-      required this.dob,
-      required this.country})
-      : _majors = majors;
+      required this.dob});
 
   factory _$RegisterModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterModelImplFromJson(json);
@@ -226,26 +211,18 @@ class _$RegisterModelImpl implements _RegisterModel {
   final String password;
   @override
   final Role role;
-  final List<String> _majors;
   @override
-  List<String> get majors {
-    if (_majors is EqualUnmodifiableListView) return _majors;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_majors);
-  }
-
+  final String major;
   @override
   final String fullName;
   @override
   final String phoneNumber;
   @override
   final DateTime dob;
-  @override
-  final String country;
 
   @override
   String toString() {
-    return 'RegisterModel(username: $username, email: $email, password: $password, role: $role, majors: $majors, fullName: $fullName, phoneNumber: $phoneNumber, dob: $dob, country: $country)';
+    return 'RegisterModel(username: $username, email: $email, password: $password, role: $role, major: $major, fullName: $fullName, phoneNumber: $phoneNumber, dob: $dob)';
   }
 
   @override
@@ -259,28 +236,18 @@ class _$RegisterModelImpl implements _RegisterModel {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.role, role) || other.role == role) &&
-            const DeepCollectionEquality().equals(other._majors, _majors) &&
+            (identical(other.major, major) || other.major == major) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.dob, dob) || other.dob == dob) &&
-            (identical(other.country, country) || other.country == country));
+            (identical(other.dob, dob) || other.dob == dob));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      username,
-      email,
-      password,
-      role,
-      const DeepCollectionEquality().hash(_majors),
-      fullName,
-      phoneNumber,
-      dob,
-      country);
+  int get hashCode => Object.hash(runtimeType, username, email, password, role,
+      major, fullName, phoneNumber, dob);
 
   @JsonKey(ignore: true)
   @override
@@ -302,11 +269,10 @@ abstract class _RegisterModel implements RegisterModel {
       required final String email,
       required final String password,
       required final Role role,
-      required final List<String> majors,
+      required final String major,
       required final String fullName,
       required final String phoneNumber,
-      required final DateTime dob,
-      required final String country}) = _$RegisterModelImpl;
+      required final DateTime dob}) = _$RegisterModelImpl;
 
   factory _RegisterModel.fromJson(Map<String, dynamic> json) =
       _$RegisterModelImpl.fromJson;
@@ -320,15 +286,13 @@ abstract class _RegisterModel implements RegisterModel {
   @override
   Role get role;
   @override
-  List<String> get majors;
+  String get major;
   @override
   String get fullName;
   @override
   String get phoneNumber;
   @override
   DateTime get dob;
-  @override
-  String get country;
   @override
   @JsonKey(ignore: true)
   _$$RegisterModelImplCopyWith<_$RegisterModelImpl> get copyWith =>

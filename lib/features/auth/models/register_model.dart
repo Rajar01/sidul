@@ -12,11 +12,10 @@ class RegisterModel with _$RegisterModel {
     required String email,
     required String password,
     required Role role,
-    required List<String> majors,
+    required String major,
     required String fullName,
-    required  String phoneNumber,
+    required String phoneNumber,
     required DateTime dob,
-    required String country,
   }) = _RegisterModel;
 
   factory RegisterModel.fromJson(Map<String, Object?> json) =>
